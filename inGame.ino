@@ -1,16 +1,20 @@
 
 void initInGame()
 {
-  
+  initPlayer();
+  initEnnemies();
+  initPlayerBullet();
 }
 void updateInGame()
 {
-  if (gb.buttons.pressed(BUTTON_A)) {
-    gameState = STATE_GAME_OVER;
-  }
+  updatePlayer();
+  updateEnnemies();
+  updatePlayerBullet();
 }
 void drawInGame()
 {
-  gb.display.println("in game");
+  drawPlayer();
+  drawEnnemies();
+  drawPlayerBullet();
 }
 
