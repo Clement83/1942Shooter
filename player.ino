@@ -10,11 +10,7 @@ void initPlayer()
 }
 
 void updatePlayer()
-{
-  if (gb.buttons.pressed(BUTTON_MENU)) {
-    gameState = STATE_GAME_OVER;
-  }
-  
+{  
   if (gb.buttons.repeat(BUTTON_UP,0)) {
     soldat.y--;
   }

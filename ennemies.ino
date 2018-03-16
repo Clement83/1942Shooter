@@ -25,23 +25,13 @@ void initEnnemies()
 
 void updateEnnemies()
 {
-  uint8_t dead = 0;
   for(uint8_t i = 0 ; i< NB_MAX_ENNEMIES; ++i) {
    if(ennemies[i].life>0) {
     if(collideEnnemyAndBullets(ennemies[i])) {
       --ennemies[i].life; //we die
     }
     --ennemies[i].x; //on avance
-    if(ennemies[i].x< 2) {
-      gameState = STATE_GAME_OVER; 
-    }
-   } else {
-    ++dead;
    }
-  }
-
-  if(dead>=NB_MAX_ENNEMIES) {
-    gameState = STATE_GAME_OVER;
   }
 }
 
