@@ -1,4 +1,3 @@
-
 #define SOLDAT_X 3
 #define SOLDAT_START_LIFE 100
 

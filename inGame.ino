@@ -5,7 +5,6 @@ boolean isEndGame()
    if(ennemies[i].life>0) {
     if(ennemies[i].x< 2) {
       return true;
-     
     }
    } else {
     ++dead;
@@ -14,6 +13,7 @@ boolean isEndGame()
   if(dead>=NB_MAX_ENNEMIES) {
     return true;
   }
+  return false;
 }
 
 void initInGame()
