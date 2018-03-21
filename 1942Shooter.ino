@@ -35,6 +35,9 @@ Player soldat;
 #define NB_PLAYER_BULLET 10
 Bullet soldatBullet[NB_PLAYER_BULLET];
 
+#define NB_ENNEMY_BULLET 10
+Bullet ennemyBullet[NB_ENNEMY_BULLET];
+
 #define NB_MAX_ENNEMIES 10
 Ennemies ennemies[NB_MAX_ENNEMIES];
 

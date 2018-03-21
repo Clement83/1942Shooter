@@ -1,4 +1,4 @@
-#define VELOCITY_SOLDAT_BULLET 3
+#define VELOCITY_SOLDAT_BULLET 5
 
 int getNextBullet()
 {

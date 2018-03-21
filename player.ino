@@ -1,6 +1,19 @@
 #define SOLDAT_X 3
 #define SOLDAT_START_LIFE 100
 
+boolean collidePlayerAndBullets() 
+{
+  for(int i = 0 ; i< NB_ENNEMY_BULLET; ++i){
+    if(ennemiesBullet[i].life>0) {
+      if(Collision(ennemiesBullet[i].x, ennemiesBullet[i].y, 2, 2, SOLDAT_X, soldat.y, 5, 5)) {
+        soldatBullet[i].life = 0;
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 void initPlayer()
 {
   soldat.y = 40;

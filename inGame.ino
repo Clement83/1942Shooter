@@ -27,6 +27,7 @@ void updateInGame()
   updatePlayer();
   updateEnnemies();
   updatePlayerBullet();
+  updateEnnemiesBullet();
   if(isEndGame()) {
      gameState = STATE_GAME_OVER; 
   }
@@ -38,5 +39,6 @@ void drawInGame()
   drawPlayer();
   drawEnnemies();
   drawPlayerBullet();
+  drawEnnemiesBullet();
 }
 
