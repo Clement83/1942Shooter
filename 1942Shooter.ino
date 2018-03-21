@@ -6,27 +6,27 @@
 #define STATE_GAME_OVER 2
 
 //save the curent state
-uint8_t gameState = 0;
-uint8_t oldGameState = -1;
+int gameState = 0;
+int oldGameState = -1;
 
 
 struct Ennemies {
-  uint8_t y;
-  uint8_t x;
-  uint8_t life;
-  uint8_t damage;
+  int y;
+  int x;
+  int life;
+  int damage;
 };
 
 struct Bullet {
-  uint8_t y;
-  uint8_t x;
-  uint8_t life;
-  uint8_t damage;
+  int y;
+  int x;
+  int life;
+  int damage;
 };
 
 struct Player {
-  uint8_t y;
-  uint8_t life;
+  int y;
+  int life;
   boolean fire;
 };
 

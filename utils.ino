@@ -1,4 +1,4 @@
-bool Collision(uint8_t x1, uint8_t y1,uint8_t w1,uint8_t h1, uint8_t x2, uint8_t y2,uint8_t w2,uint8_t h2)
+bool Collision(int x1, int y1,int w1,int h1, int x2, int y2,int w2,int h2)
 {
    if((x2 >= x1 + w1)      // trop à droite
   || (x2 + w2 <= x1) // trop à gauche
