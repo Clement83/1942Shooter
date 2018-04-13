@@ -4,8 +4,8 @@
 boolean collidePlayerAndBullets() 
 {
   for(int i = 0 ; i< NB_ENNEMY_BULLET; ++i){
-    if(ennemiesBullet[i].life>0) {
-      if(Collision(ennemiesBullet[i].x, ennemiesBullet[i].y, 2, 2, SOLDAT_X, soldat.y, 5, 5)) {
+    if(ennemyBullet[i].life>0) {
+      if(Collision(ennemyBullet[i].x, ennemyBullet[i].y, 2, 2, SOLDAT_X, soldat.y, 5, 5)) {
         soldatBullet[i].life = 0;
         return true;
       }
