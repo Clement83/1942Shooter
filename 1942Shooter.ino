@@ -15,6 +15,8 @@ struct Ennemies {
   int x;
   int life;
   int damage;
+  int fire;
+  boolean isRun;
 };
 
 struct Bullet {
@@ -27,7 +29,8 @@ struct Bullet {
 struct Player {
   int y;
   int life;
-  boolean fire;
+  int fire;
+  boolean isRun;
 };
 
 Player soldat;
@@ -35,6 +38,7 @@ Player soldat;
 #define NB_PLAYER_BULLET 10
 Bullet soldatBullet[NB_PLAYER_BULLET];
 
+#define NB_FRAME_FIRE_ANIM 3
 #define NB_ENNEMY_BULLET 10
 Bullet ennemyBullet[NB_ENNEMY_BULLET];
 

@@ -32,8 +32,7 @@ void initPlayerBullet()
 
 void updatePlayerBullet()
 {
- if(soldat.fire) {
-  soldat.fire = false;
+ if(soldat.fire == NB_FRAME_FIRE_ANIM) {
    createNewSoldatBullet();
  }
    for(int i = 0 ; i< NB_PLAYER_BULLET; ++i){
