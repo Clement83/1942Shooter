@@ -9,7 +9,8 @@
 int gameState = 0;
 int oldGameState = -1;
 
-
+#define ENNEMIE_W 5
+#define ENNEMIE_H 5
 struct Ennemies {
   int y;
   int x;
@@ -17,6 +18,11 @@ struct Ennemies {
   int damage;
   int fire;
   boolean isRun;
+};
+
+struct Barricade {
+  int y;
+  int life;
 };
 
 struct Bullet {
@@ -37,6 +43,11 @@ Player soldat;
 
 #define NB_PLAYER_BULLET 10
 Bullet soldatBullet[NB_PLAYER_BULLET];
+
+
+#define NB_BARRICADE 3
+#define LIFE_BARRICADE 3
+Barricade barricades[NB_BARRICADE];
 
 #define NB_FRAME_FIRE_ANIM 3
 #define NB_ENNEMY_BULLET 10

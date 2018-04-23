@@ -48,7 +48,7 @@ void updateEnnemiesBullet()
 
 void drawEnnemiesBullet()
 {
-  gb.display.setColor(YELLOW);
+  gb.display.setColor(RED);
    for(int i = 0 ; i< NB_ENNEMY_BULLET; ++i) {
      if(ennemyBullet[i].life>0) {
         gb.display.fillRect( ennemyBullet[i].x , ennemyBullet[i].y , 1 , 1);

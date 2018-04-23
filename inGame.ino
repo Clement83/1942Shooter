@@ -22,6 +22,7 @@ void initInGame()
   initEnnemies();
   initPlayerBullet();
   initWorld();
+  initBarricade();
 }
 void updateInGame()
 {
@@ -30,6 +31,7 @@ void updateInGame()
   updatePlayerBullet();
   updateEnnemiesBullet();
   updateWorld();
+  updateBarricade();
   if(isEndGame()) {
      gameState = STATE_GAME_OVER; 
   }
@@ -39,6 +41,7 @@ void drawInGame()
   drawWorld();
   drawPlayer();
   drawEnnemies();
+  drawBarricade();
   drawPlayerBullet();
   drawEnnemiesBullet();
 }
