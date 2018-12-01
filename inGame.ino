@@ -20,18 +20,17 @@ void initInGame()
 {
   initPlayer();
   initEnnemies();
-  initPlayerBullet();
   initWorld();
   initBarricade();
+  initEffectBullet();
 }
 void updateInGame()
 {
   updatePlayer();
   updateEnnemies();
-  updatePlayerBullet();
-  updateEnnemiesBullet();
   updateWorld();
   updateBarricade();
+  updateEffectBullet();
   if(isEndGame()) {
      gameState = STATE_GAME_OVER; 
   }
@@ -42,7 +41,6 @@ void drawInGame()
   drawPlayer();
   drawEnnemies();
   drawBarricade();
-  drawPlayerBullet();
-  drawEnnemiesBullet();
+  drawEffectBullet();
 }
 

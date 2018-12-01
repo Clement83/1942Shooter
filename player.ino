@@ -10,16 +10,10 @@ Image soldatRun = Image(soldatRunData);
 const uint16_t soldatIdlData[] = {10,10,1, 1, 0xffff, 0, 0xffff,0xffff,0xffff,0x5b27,0x6b8a,0xffff,0xffff,0xffff,0xffff,0xffff,0xffff,0xffff,0x6203,0x52c6,0x6b8a,0x6b8a,0xffff,0xffff,0xffff,0xffff,0xffff,0xffff,0x39a3,0x8b46,0xc4c9,0x83ab,0xffff,0xffff,0xffff,0xffff,0xffff,0x7bab,0x5ac6,0x49c2,0x7b07,0xffff,0xffff,0xffff,0xffff,0xffff,0xffff,0x52a6,0x4266,0x2963,0x2963,0x3163,0x2102,0x39a3,0x4a68,0x840f,0xffff,0x4a67,0x62e6,0x6285,0x2102,0x3142,0xc4c9,0xffff,0xffff,0xffff,0xffff,0xffff,0x3162,0x4a04,0x4245,0x8c4f,0x6265,0xffff,0xffff,0xffff,0xffff,0xffff,0x4aa6,0x634a,0x39c4,0x4266,0x738c,0xffff,0xffff,0xffff,0xffff,0x5aa8,0x4a46,0xffff,0x7bcd,0x5266,0xffff,0xffff,0xffff,0xffff,0x6203,0x6203,0xffff,0xffff,0xffff,0x51a2,0x6203,0xffff,0xffff,0xffff};
 Image soldatIdl = Image(soldatIdlData);
 
+int targetIndex = -1;
+
 boolean collidePlayerAndBullets() 
 {
-  for(int i = 0 ; i< NB_ENNEMY_BULLET; ++i){
-    if(ennemyBullet[i].life>0) {
-      if(Collision(ennemyBullet[i].x, ennemyBullet[i].y, 2, 2, SOLDAT_X, soldat.y, 5, 5)) {
-        ennemyBullet[i].life = 0;
-        return true;
-      }
-    }
-  }
   return false;
 }
 
@@ -29,6 +23,8 @@ void initPlayer()
   soldat.life = SOLDAT_START_LIFE;
   soldat.fire = 0;
   soldat.isRun = false;
+  soldat.x = SOLDAT_X;
+  targetIndex = -1;
 }
 
 void updatePlayer()
@@ -49,6 +45,9 @@ void updatePlayer()
   }
   if (soldat.fire == 0 && gb.buttons.pressed(BUTTON_A)) {
     soldat.fire = NB_FRAME_FIRE_ANIM;
+    getCloserEnnemyIndex();
+    shakeMagnitude = 2;
+    shakeTimeLeft = 5;
   }
 }
 
@@ -58,10 +57,34 @@ void drawPlayer()
     gb.lights.fill(YELLOW);
   } 
   if(soldat.fire>0) {
-    gb.display.drawImage( SOLDAT_X , soldat.y , soldatFire);
+    drawCheckedImage( soldat.x , soldat.y , soldatFire);
+    if(targetIndex>=0){ 
+       gb.display.setColor(YELLOW);
+       drawMitraille( soldat.x + 10 , soldat.y+ 3, ennemies[targetIndex].x+ 5, ennemies[targetIndex].y + 5);
+       if(random(0,2) == 0) {
+        ennemies[targetIndex].life = 0;
+       }
+    }
   } else if(soldat.isRun == true){
-    gb.display.drawImage( SOLDAT_X , soldat.y , soldatRun);
+    drawCheckedImage( soldat.x , soldat.y , soldatRun);
   } else {
-    gb.display.drawImage( SOLDAT_X , soldat.y , soldatIdl);
+    drawCheckedImage( soldat.x , soldat.y , soldatIdl);
   }
 }
+
+void getCloserEnnemyIndex()
+{
+  targetIndex = -1;
+  int dist = 99999999;
+  int tmpDist = 99999999;
+  for(int i = 0 ; i< NB_MAX_ENNEMIES; ++i) {
+    if(ennemies[i].life > 0 && ennemies[i].x < (gb.display.width())) {
+      tmpDist = pow(ennemies[i].x - soldat.x,2 ) + pow(ennemies[i].y - soldat.y, 2);
+      if(dist > tmpDist) {
+        dist = tmpDist;
+        targetIndex = i;
+      }
+    }
+  }
+}
+

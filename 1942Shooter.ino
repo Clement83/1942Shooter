@@ -5,6 +5,12 @@
 #define STATE_IN_GAME 1
 #define STATE_GAME_OVER 2
 
+//Shake the screen Rodot Code
+byte shakeMagnitude;
+byte shakeTimeLeft;
+int cameraX = 0;
+int cameraY = 0;
+
 //save the curent state
 int gameState = 0;
 int oldGameState = -1;
@@ -14,10 +20,14 @@ int oldGameState = -1;
 struct Ennemies {
   int y;
   int x;
+  int destX;
   int life;
   int damage;
   int fire;
   boolean isRun;
+  int cadence = 12;
+  int cptCadence = 0;
+  int vx = 1;
 };
 
 struct Barricade {
@@ -25,14 +35,8 @@ struct Barricade {
   int life;
 };
 
-struct Bullet {
-  int y;
-  int x;
-  int life;
-  int damage;
-};
-
 struct Player {
+  int x;
   int y;
   int life;
   int fire;
@@ -41,20 +45,23 @@ struct Player {
 
 Player soldat;
 
-#define NB_PLAYER_BULLET 10
-Bullet soldatBullet[NB_PLAYER_BULLET];
-
-
 #define NB_BARRICADE 3
-#define LIFE_BARRICADE 3
+#define LIFE_BARRICADE 5
 Barricade barricades[NB_BARRICADE];
 
 #define NB_FRAME_FIRE_ANIM 3
-#define NB_ENNEMY_BULLET 10
-Bullet ennemyBullet[NB_ENNEMY_BULLET];
 
-#define NB_MAX_ENNEMIES 10
+#define NB_MAX_ENNEMIES 4
 Ennemies ennemies[NB_MAX_ENNEMIES];
+
+// effet de balle au dessus du monde
+#define VITESSE_EFFECTS_BULLETS 15
+struct EffectBullets {
+  int x;
+  int y;
+};
+#define NB_MAX_EFFECTS_BULLETS 4
+EffectBullets effectBullets[NB_MAX_EFFECTS_BULLETS];
 
 boolean testGameStateChange() 
 {
@@ -73,7 +80,7 @@ void loop() {
   while (!gb.update()); //only one time in the programe
   gb.display.clear();
   gb.lights.clear();
-
+  shakeScreen();
 // switch for manage state
   switch(gameState)
   {
